@@ -194,9 +194,13 @@ function buildProductCatalog(rawItems) {
   let products = [];
   for (let i = 0; i < rawItems.length; i++) {
     let product = Object.create(productProto);
-    product.name = rawItems[i].name;
-    product.brand = rawItems[i].brand || "Generic";
-    product.stock = rawItems[i].stock;
+    Object.assign(product, rawItems[i]);
+    if (!rawItems[i].brand) {
+      product.brand = "Generic";
+    }
+    // product.name = rawItems[i].name;
+    // product.stock = rawItems[i].stock;
+    // product.brand = rawItems[i].brand || "Generic";
     products.push(product);
   }
   return products;
@@ -316,3 +320,4 @@ console.log(
 // ============================================================
 // End — Have fun!
 // ============================================================
+
