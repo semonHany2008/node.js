@@ -1,0 +1,13 @@
+- npm installed automatically when node packages installed
+
+                    package.json
+- installed when initializing node server 'npm init'
+- author: is the owner of the website
+- description: conatains demo of the website
+- dependencies: contains the installed libraries names and their versions.
+- main: entry point of the server
+
+                    node_modules
+- this folder contains the installed libraries commands
+- it doesn't take large memory but it's too big to upload ito github so it added to gitigore file
+- package-lock.json file is for installed libaries details on the version
