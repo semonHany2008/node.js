@@ -1,0 +1,34 @@
+                             javaScript
+ - using + operator between two strings will concatenate the strings, but using other operators the strings will be implicitly converted into numbers including (NaN)
+ - variables declared using let, var, const all are function block, while let and const only are scope block
+ - variables are temporarily storing units, unlike the databases. as the variables store its values in RAM, while databases values stored into hard desk.
+ - accessing element that is not exist in an array will print undefined.
+ - previusly, in concatenation if the very first term was number the operation will be addition else it will be concat
+   ,but now whatever the first term type it will be concatenation.
+ - while accessing elements in list using bracket-notation we can't use negative indexes,
+   ,but using methods like splice() we can use [-1, -2, -3, ...] to access elements from the end.
+ - splice method role with list: Add, remove, or replace items in place. Extract part of an array.
+ - reassigning a separate element from an array or string doesn't affect the original list, so we use splice() for replacing in list.
+ - we use Object.assign(target, source) to take a value copy, because the direct assignment for object is a reference copy any change in the copied one will affect the original.
+ - 'let i of list' iterate on the list elements but not with object
+   ,while 'let i in list||object' iterate on keys.
+
+                              Git
+ - git is part of 'version control system' used to track changes made on file and enable accessing previous version.
+ - its repo is local, unlike the github whose repo are global.
+ * dealing with cmd(command line): 
+   - 'cd' stands for change direction used to change the current path. it acts as a function with the new path as a parameter.
+   - '.' refers to the current folder, while '..' refers to the previous folder in the relative path.
+   - absolute path starts from the very first container (c:).
+   - if the path contains spaces we put the whole path into double quotation.
+   - the command 'dir' stands for directory used to show all available files in the current folder.
+   - the command 'explorer.exe' open the current folder.
+   - the command 'code .' open the current folder with VScode.
+   - the command 'git init' intialize an empty local repository.
+   - 'git add .' add the files of the current folder to git. used when any changes are made.
+   - 'git status' show if the current folder added to git or not.
+   - there's an extension in VScode show the status of the file if ('U' untracked, 'A' added, 'M' modified)
+   - 'git commit -m "..."' used to send a message with any added changes to describe it.
+   - 'git commit -am "..."' used to add changes and send a message with it in one command.
+  - use powershell instead of cmd for more extensions and privileges.
+  - pla pla
