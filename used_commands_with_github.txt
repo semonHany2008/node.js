@@ -1,0 +1,20 @@
+- mkdir work
+- cd work
+- mkdir Day4
+- cd ./Day4
+- code .
+- git status (untracked)
+- cd ..\
+- git init
+- git add .
+- git status (added)
+- git commit -m "used_commands file created"
+- git remote add origin https://github.com/semonHany2008/work.git
+- git branch -M main  //this command is necessary because my setup github branch is master
+- git push -u origin main
+- git status (modified)
+- git commit -am "previous commands used until now added to the file"
+- git push -u origin main
+- git status (up-to-date)
+
+note:this file created in path 'c:\users\elmanahry\work\Day4' at first and move to this folder later
