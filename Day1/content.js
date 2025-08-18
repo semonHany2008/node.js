@@ -418,3 +418,9 @@ let fbPosts = {
 };
 
 console.log(fbPosts.posts[fbPosts.posts.length - 1].views); // last post views: 3558
+
+// console.log("semon");
+// console.log("5" * "6"); //will be converted into numbers and process the operation
+// console.log("se2mon" * "6"); // will return NaN as "se2mon" cannot be converted to a number
+// console.log("5" + "6"); // will concatenate the strings
+// console.log(5 + 6);
