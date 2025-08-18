@@ -24,11 +24,18 @@
    - the command 'dir' stands for directory used to show all available files in the current folder.
    - the command 'explorer.exe' open the current folder.
    - the command 'code .' open the current folder with VScode.
+   - the command 'cursor .' open the current folder with cursor IDE.
+   - 'mkdir folder_name' used to create new folder.
    - the command 'git init' intialize an empty local repository.
    - 'git add .' add the files of the current folder to git. used when any changes are made.
    - 'git status' show if the current folder added to git or not.
    - there's an extension in VScode show the status of the file if ('U' untracked, 'A' added, 'M' modified)
    - 'git commit -m "..."' used to send a message with any added changes to describe it.
-   - 'git commit -am "..."' used to add changes and send a message with it in one command.
+   - 'git commit -am "..."' used to add changes and send a message with it in one command, but the file must be tracked and added already into git.
   - use powershell instead of cmd for more extensions and privileges.
-  - pla pla
+  - 'git remote add origin repo-path' add the current folder into github repo.
+  - 'git push -u origin main' used at the first time to push the git folder into github repository and later used to push any new changes.
+
+                              npm
+- 'npm update' or 'npm upgrade' used to update installed libraries
+- 'npm uninstall' delete installed library
