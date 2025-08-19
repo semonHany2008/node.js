@@ -25,17 +25,27 @@
    - the command 'explorer.exe' open the current folder.
    - the command 'code .' open the current folder with VScode.
    - the command 'cursor .' open the current folder with cursor IDE.
-   - 'mkdir folder_name' used to create new folder.
+   - 'mkdir folder_name' stands for 'make directory' used to create new folder.
    - the command 'git init' intialize an empty local repository.
    - 'git add .' add the files of the current folder to git. used when any changes are made.
    - 'git status' show if the current folder added to git or not.
-   - there's an extension in VScode show the status of the file if ('U' untracked, 'A' added, 'M' modified)
+   - there's an extension in VScode show the status of the file if ('U' untracked, 'A' added, 'M' modified, 'R' index renamed)
    - 'git commit -m "..."' used to send a message with any added changes to describe it.
    - 'git commit -am "..."' used to add changes and send a message with it in one command, but the file must be tracked and added already into git.
   - use powershell instead of cmd for more extensions and privileges.
-  - 'git remote add origin repo-path' add the current folder into github repo.
+  - 'git remote add origin ${repo path ended with .git}' add the current folder into github repo.
+  - 'git branch -M main' used to make master branch(the default of git app) a main branch
   - 'git push -u origin main' used at the first time to push the git folder into github repository and later used to push any new changes.
-
+  - 'git pull origin main --allow-unrelated-histories' used to merge the manual added file to github with ones added be git local repo.
+  - 'git rm file_name' remove a file from git repo.
+  - 'git mv -f file_name target_folder' move a file from the current folder(source) to the target.
                               npm
 - 'npm update' or 'npm upgrade' used to update installed libraries
 - 'npm uninstall' delete installed library
+
+                            node.js
+- for exporting, importing from modules we use 'module.exports=property or method to be shared' in the source,
+  'require(source file path)' in the target file then store the returned file content into variable.
+-install the library readline to create an interface for taking input from user.
+*status code:
+  -401:unauthorized, 201: success and create, 403:forbidden
