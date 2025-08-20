@@ -39,6 +39,8 @@
   - 'git pull origin main --allow-unrelated-histories' used to merge the manual added file to github with ones added be git local repo.
   - 'git rm file_name' remove a file from git repo.
   - 'git mv -f file_name target_folder' move a file from the current folder(source) to the target.
+    with the flag -f will overwrite the destination file if exist already.
+
                               npm
 - 'npm update' or 'npm upgrade' used to update installed libraries
 - 'npm uninstall' delete installed library
@@ -49,3 +51,8 @@
 -install the library readline to create an interface for taking input from user.
 *status code:
   -401:unauthorized, 201: success and create, 403:forbidden
+- when the key will be the same as the variable_name including its value we just write the variable_name directly.
+- event loop: javaScript follow async approach in execution (single-threaded), but some functions like setTimeOut follow the webAPI service to be syncronous be waiting in an aside thread(libuv) until it's ready to execute and go to event queue, then to the call-stack.
+- when the url error is in the endpoind the noFound page appear by the server
+  , while when the error is in the domain the browser itself show the notFound page.
+- we use the promise to make the code syncronous, then we tend to use async-await logic to wait the promise to be executed.
