@@ -51,7 +51,7 @@ app.post("/api/tasks", (req, res) => {
   tasks.push(task);
   res.json({ message: "task added successfully", task });
   // KEEP THIS CODE AFTER ADDING TASK TO TASKS ARRAY
-  saveTasks(tasks, "data/tasks.json");
+  saveTasks(tasks, path.join(__dirname, "data", "tasks.json"));
 });
 
 app.get("/profile", (req, res) => {
@@ -78,7 +78,7 @@ app.post("/register", (req, res) => {
   res.end("user added successfully!");
 
   // KEEP THIS CODE AFTER ADDING USER TO USERS ARRAY
-  saveUsers(users, "data/users.json");
+  saveUsers(users, path.join(__dirname, "data", "users.json"));
 });
 
 app.post("/login", (req, res) => {
@@ -89,11 +89,11 @@ app.post("/login", (req, res) => {
   }
   let foundUser = users.find(
     (user) =>
-      user.email == (loginInfo.email || user.username == loginInfo.username) &&
+      (user.email == loginInfo.email || user.username == loginInfo.username) &&
       user.password == loginInfo.password
   );
   if (!foundUser) {
-    return res.end("user not found, try register!");
+    return res.status(404).end("user not found, try register!");
   }
   res.end("successful login!");
 });
