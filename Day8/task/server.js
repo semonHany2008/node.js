@@ -70,7 +70,9 @@ app.post("/register", (req, res) => {
   if (!newUser.username || !newUser.email || !newUser.password) {
     return res.end("username, email and password all are required!");
   }
-  let foundUser = users.find((user) => user.email == newUser.email);
+  let foundUser = users.find(
+    (user) => user.email == newUser.email || user.username == newUser.username
+  );
   if (foundUser) {
     return res.end("you're already registered, try login!");
   }

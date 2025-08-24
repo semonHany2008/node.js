@@ -64,6 +64,16 @@
 - params: Found after a ? in the URL. Usually written as key-value pairs separated by &.
 
                            express
+- 'npm i nodemon express' this command install both nodemon and express libraries.
 - when we run express server we must use nodemon not the normal node keyword.
 - when we send body to API request, we send it in the form of stringified json.
-- using fs module to readFileSync() or writeFileSync() to read and write data stored into an external json file, we must use JSON.parse() and JSON.stringify().
+- using fs(file system) built-in module to readFileSync() or writeFileSync() to read and write data stored into an external json file, we must use JSON.parse() and JSON.stringify().
+- we can't use err-parameter call-back function with fs.readFileSync(), it's used with fs.readFile() itself.
+- we use app.all(/.*/,(req,res)=>{}) to handle not found end-points. using the regex /.*/ or the path "/{*any}/".
+- 'npm i ejs' stands for 'embedded javaScript' is a template engine used to enable writing js code into template html with the extension .ejs in views folder, and view engine enable reading views files while rendering by the express server
+  , where set using:"app.set('view engine','ejs');" and "app.set('views', path.join(__dirname,'/views'))"
+  , then we put html files into the views folder with the extension .ejs.
+- js code into HTML template: each line put into <% %>tag
+- sending variables from express server to ejs templates while rendering it: res.render('filename.ejs',{keys(variables):values})
+  , then using the tag <%=variable to print%>  in HTML template.
+- '__diename' in path library return the current folder absolute path
