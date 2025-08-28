@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%=username%></title>
+    <link rel="stylesheet" href="/css/profile.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+  </head>
+  <body>
+    <%-include('partials/header')%>
+    <h2><%='welcome, '+username%></h2>
+    <h2><%='age: '+age%></h2>
+    <h2><%='phone: '+phone%></h2>
+    <% for( let index = 0; index < 3; index++ ) { %>
+    <h1><%= index %></h1>
+    <% } %> <% if(role=='admin') {%>
+    <p>track1: 2000$</p>
+    <p>track2: 5400$</p>
+    <p>track3: 50000$</p>
+    <p>total: 57400$</p>
+    <% } %>
+  </body>
+</html>
