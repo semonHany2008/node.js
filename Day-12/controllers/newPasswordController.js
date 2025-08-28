@@ -16,7 +16,7 @@ const newPassword = async(req,res) => {
     }
     if (newPassword !== confirmPassword){
         return res.status(400).json({message : "Passwords do not match"})
-    }
+    }//this condition is to ensure an adult person how trying to change the password
     const hashPassword = await bcrypt.hash(newPassword,10)
     await UsersData.updateOne({email : email},{password : hashPassword})
     return res.status(200).json({message : "Password updated successfully"})

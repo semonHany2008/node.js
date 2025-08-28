@@ -51,11 +51,11 @@
 -install the library readline to create an interface for taking input from user.
 *status code:
   -401:unauthorized, 201: success and create, 403:forbidden
-- when the key will be the same as the variable_name including its value we just write the variable_name directly.
+- when the key will be the same as the variable_name including its value we just write the variable_name directly in the object according to the updated version of js (ES6).
 - event loop: javaScript follow async approach in execution (single-threaded), but some functions like setTimeOut follow the webAPI service to be syncronous be waiting in an aside thread(libuv) until it's ready to execute and go to event queue, then to the call-stack.
 - when the url error is in the endpoind the noFound page appear by the server
   , while when the error is in the domain the browser itself show the notFound page.
-- we use the promise to make the code syncronous, then we tend to use async-await logic to wait the promise to be executed.
+- we use the promise to make the code asyncronous according to the general logic async-await, which enable using .then((res)=>{}).catch((err)=>{})
 
                           client req
 - header: contains sensitive data like: authorization:'Bearer 3887', Content-Type:'application/json', accept:'application/json', accept-language:'ar-EG, en-US'.
@@ -70,10 +70,26 @@
 - using fs(file system) built-in module to readFileSync() or writeFileSync() to read and write data stored into an external json file, we must use JSON.parse() and JSON.stringify().
 - we can't use err-parameter call-back function with fs.readFileSync(), it's used with fs.readFile() itself.
 - we use app.all(/.*/,(req,res)=>{}) to handle not found end-points. using the regex /.*/ or the path "/{*any}/".
+
+                            ejs
 - 'npm i ejs' stands for 'embedded javaScript' is a template engine used to enable writing js code into template html with the extension .ejs in views folder, and view engine enable reading views files while rendering by the express server
   , where set using:"app.set('view engine','ejs');" and "app.set('views', path.join(__dirname,'/views'))"
   , then we put html files into the views folder with the extension .ejs.
 - js code into HTML template: each line put into <% %>tag
 - sending variables from express server to ejs templates while rendering it: res.render('filename.ejs',{keys(variables):values})
   , then using the tag <%=variable to print%>  in HTML template.
-- '__diename' in path library return the current folder absolute path
+- '__diename' in path library return the current folder absolute path.
+- we access the folders inside public folder using / at the start of the path, in addition to using app.use(express.static(publicFolder_path)).
+- when we write the path to a file or folder in the current folder we user ./ at the start of the path.
+- .gitignore file used to ignore senesetive or large storage cost folders, write the file name directly '.env' and the folder with / at the front '/node_modules'.
+
+                        database
+- my cluster0 password in Node.JS project on mongodb atlas: 7EbDNXJzwj53enKD   ***************
+- connection string: mongodb+srv://semonhany848:7EbDNXJzwj53enKD@cluster0.etfcmqu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+- username and email must be unique, in general.
+- when creating new row in the mongo model we use 'new modelName({})' then 'addedRow_name.save()' or 'modelName.create({})'
+- OTP (one-time password) is used for authentication in cases like forget_password its schema contains email and the generated otp_number.
+- making a schema expired after a definite time: createdAt:{type:Date, default:Date.now, expires:300}.
+- expires_value for the temporary schema by default in seconds, but can be '7d', '3h', '9m'.
+- generating random number between (min, max)nums: Meth.floor(Math.random()*(max-min))+min.
+- perplexing updating syntax:model_name.updateOne({filteration}, {$inc{numeric_property:increasing_amount}}) ... model_name.updateOne({filteration}, {property:{$set:new_value}}).

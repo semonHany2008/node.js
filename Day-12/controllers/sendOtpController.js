@@ -10,7 +10,7 @@ const sendOtp = async(req,res) => {
         if (!getUser){
             return res.json({message: "User not found"})
         }
-        const randomSix = Math.floor(100000 + Math.random() * 900000);
+        const randomSix = Math.floor(100000 + Math.random() * 900000);//generates a random number between 100000-999999
         const addOtp = new otpData({
             email,
             otp : randomSix
