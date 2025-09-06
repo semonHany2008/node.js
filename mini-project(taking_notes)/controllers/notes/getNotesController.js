@@ -17,7 +17,7 @@ const getNotes=async (req, res)=>{
             else if(plainToken.role=='admin')
                 notes=await notesModel.find();
             // res.json(notes);
-            res.render('notes', {notes});
+            res.render('notes', {notes, page:"notes", role:plainToken.role});
         }catch (err) {
             return res.status(401).json({ message: "invalid or expired token " });
         }

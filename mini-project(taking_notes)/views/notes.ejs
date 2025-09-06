@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>notes</title>
+    <title><%=page%></title>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="stylesheet" href="/css/notes.css" />
     <link rel="stylesheet" href="/css/header.css" />
@@ -13,12 +13,23 @@
 <body>
     <%-include('./partials/header.ejs')%>
     <div class="container">
+        <% if (page=="categoryNotes") { %>
+         <h1><%=notes[0].categoryName%></h1>
+         <% if (role=='admin') { %>
+          <h2><%=notes[0].ownerUsername%></h2>
+         <% } %>
+        <% } %>
         <div class="notes-container">
             <% for( let note of notes ) { %>
                 <div class="note-card" id=<%=note._id%>>
                     <h2><%=note.title%></h2>
                     <p><%=note.content%></p>
+                    <% if (role=='admin') { %>
+                        <p><%=category.ownerUsername%></p>
+                    <% } %>
+                    <% if (page=='notes') { %>
                     <h3><%=note.categoryName%></h3>
+                    <% } %>
                     <div class="btn-group">
                         <button onclick="deleteNote('<%=note._id%>')">Delete</button>
                         <button onclick="revealUpdateChoices('<%=note._id%>')">update</button>
@@ -54,8 +65,10 @@
     <div id="update_choices" style="display: none;" class="modal-container">
         <div id="choices" class="modal">
         <div class="heading"><h3>update choices</h3> <div class="close" onclick="hideUpdateChoices()">&times;</div></div>
+        <div class="btn-group">
             <button id="update_partially">partially</button>
             <button id="update_totally">totally</button>
+        </div>
         </div>
     </div>
     <script src="/js/notes.js"></script>

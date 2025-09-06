@@ -32,7 +32,7 @@ const change_first_last_name = async (req, res) => {
         updatedNames.lastName=lastName;
     }
     await user.save();
-    res.json({message:"name Updated successfully",...updatedNames});
+    res.json({message:"name updated successfully",...updatedNames});
   } catch (error) {
     console.log("error changing first-last-name: ", error);
     res

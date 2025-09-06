@@ -68,6 +68,7 @@ label{
     font-size: xx-large;
     font-weight: bold;
     cursor: pointer;
+    transition: transform 2ms ease-in;
 }
 
 .container{
@@ -89,7 +90,7 @@ button{
     transition: transform 2ms ease-in;
 }
 
-button:hover{
+button:hover, .close:hover{
     transform:translateY(-2px);
 }
 
@@ -111,4 +112,9 @@ form{
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+#alertMessage{
+    font-size: 20px;
+    font-weight: 20px;
 }

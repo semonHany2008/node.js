@@ -55,8 +55,7 @@ function createCategory() {
       deleteBtn.onclick = () => deleteCategory(data._id);
 
       newCategoryContainer.append(name, deleteBtn);
-      let creationBtn=doxument.querySelector("button[onclick='createCategory()']");
-      document.querySelector(".container").insertBefore(newCategoryContainer, creationBtn);
+      document.querySelector(".categories-container").appendChild(newCategoryContainer);
 
       showAlert(`category ${data.name} created successfully!`);
       document.getElementById("creation_group").style.display = "none";
@@ -69,6 +68,11 @@ function createCategory() {
 
 function hideCreationInput() {
   document.getElementById("creation_group").style.display = "none";
+}
+
+function getCategoryNotes(categoryId){
+  let token = localStorage.getItem("token");
+  window.location.href=`/categories/${categoryId}?token=${token}`;
 }
 
 function showAlert(message, isError) {

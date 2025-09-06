@@ -14,6 +14,9 @@ const {
   getCategories,
 } = require("./controllers/categories/getCategoriesController");
 const {
+  getCategoryNotes,
+} = require("./controllers/categories/getCategoryNotesController");
+const {
   createCategory,
 } = require("./controllers/categories/createCategoryController");
 const {
@@ -62,6 +65,9 @@ app.get("/categories", getCategories); //page
 app.post("/categories", createCategory);
 
 app.delete("/categories/:_id", deleteCategory);
+
+app.get("/categories/:_id", getCategoryNotes);
+
 
 
 //notes
