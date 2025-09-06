@@ -1,0 +1,32 @@
+.container{
+    width:55%;
+    margin:100px auto 20px;
+    font-size: large;
+}
+
+.container>div, div>span, div.contact-info{
+    width:100%;
+    display: flex;
+    align-items: center;
+    gap:10px;
+}
+
+.container>div{
+    background-color: rgb(236, 234, 115);
+    box-shadow: 2px 3px 5px black;
+    padding:10px;
+}
+div.contact-info{
+    justify-content: space-between;
+}
+
+div>span{
+    width:50%;
+}
+
+select{
+    margin-top: 30px;
+    font-size: large;
+    font-weight: bold;
+    background-color: rgb(236, 234, 115);
+}

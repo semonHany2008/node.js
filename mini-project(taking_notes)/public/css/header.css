@@ -1,0 +1,46 @@
+.header {
+  width: 100%;
+  background-color: rgb(236, 234, 115);
+  color: white;
+  margin: 0;
+  padding: 10px;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  font-size: x-large;
+  font-weight: bold;
+  border-radius: 10px;
+  height:80px;
+  box-shadow: 5px 0px 7px black;
+}
+nav,
+ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+li,
+span[class='log'] {
+  cursor: pointer;
+  transition: transform 2ms ease-in;
+  background-color: black;
+  padding: 5px 10px;
+  border-radius: 7px;
+  width:fit-content;
+}
+li:hover,
+span[class='log']:hover {
+  transform: translateY(-2px);
+}
+ul {
+  width: 70%;
+  justify-content: space-evenly;
+  list-style-type: none;
+  padding: 0;
+}
+div.log {
+  width: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}

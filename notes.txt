@@ -50,7 +50,7 @@
   'require(source file path)' in the target file then store the returned file content into variable.
 -install the library readline to create an interface for taking input from user.
 *status code:
-  -401:unauthorized, 201: success and create, 403:forbidden
+  -401:unauthorized, 201: success and create, 403:forbidden, 404:page not found
 - when the key will be the same as the variable_name including its value we just write the variable_name directly in the object according to the updated version of js (ES6).
 - event loop: javaScript follow async approach in execution (single-threaded), but some functions like setTimeOut follow the webAPI service to be syncronous be waiting in an aside thread(libuv) until it's ready to execute and go to event queue, then to the call-stack.
 - when the url error is in the endpoind the noFound page appear by the server
@@ -70,6 +70,7 @@
 - using fs(file system) built-in module to readFileSync() or writeFileSync() to read and write data stored into an external json file, we must use JSON.parse() and JSON.stringify().
 - we can't use err-parameter call-back function with fs.readFileSync(), it's used with fs.readFile() itself.
 - we use app.all(/.*/,(req,res)=>{}) to handle not found end-points. using the regex /.*/ or the path "/{*any}/".
+- when we separate the endpoints into another file than the express server we must run endPoint file which (in turn) require the server file.
 
                             ejs
 - 'npm i ejs' stands for 'embedded javaScript' is a template engine used to enable writing js code into template html with the extension .ejs in views folder, and view engine enable reading views files while rendering by the express server
@@ -83,7 +84,7 @@
 - when we write the path to a file or folder in the current folder we user ./ at the start of the path.
 - .gitignore file used to ignore senesetive or large storage cost folders, write the file name directly '.env' and the folder with / at the front '/node_modules'.
 
-                        database
+                            database
 - my cluster0 password in Node.JS project on mongodb atlas: 7EbDNXJzwj53enKD   ***************
 - connection string: mongodb+srv://semonhany848:7EbDNXJzwj53enKD@cluster0.etfcmqu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
 - username and email must be unique, in general.
@@ -92,4 +93,13 @@
 - making a schema expired after a definite time: createdAt:{type:Date, default:Date.now, expires:300}.
 - expires_value for the temporary schema by default in seconds, but can be '7d', '3h', '9m'.
 - generating random number between (min, max)nums: Meth.floor(Math.random()*(max-min))+min.
-- perplexing updating syntax:model_name.updateOne({filteration}, {$inc{numeric_property:increasing_amount}}) ... model_name.updateOne({filteration}, {property:{$set:new_value}}).
+- perplexing updating syntax:model_name.updateOne({filteration}, {$inc{numeric_property:increasing_amount}}) ... model_name.updateOne({filteration}, {$set:{property_1:new_value, property_2:new_value}})
+- the method model_name.find().select('property_names separated by spaces') used to select the set properties only for the returned objects.
+- the method model_name.find().limit(number of objects to select).
+- the method model_name.find().skip(number of objects to skip).
+- the method model_name.find().sort({property:1 or -1})used to sort the returned objects based on a specific property either descending(-1) or ascending(1).
+
+                          mini-project (taking-notes)
+- cluster0_password: wOzNSmnblDAUcr5K
+- username: semonhany848_db_user
+- connection String: mongodb+srv://semonhany848_db_user:wOzNSmnblDAUcr5K@cluster0.tftiqfj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0

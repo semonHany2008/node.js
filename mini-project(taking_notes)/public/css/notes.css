@@ -1,0 +1,25 @@
+.note-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(236, 234, 115);
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 3px 2px 5px black;
+    margin:5px 10px;
+}
+
+.note-card h2,.note-card h3{
+    margin:3px;
+}
+
+.notes-container{
+    margin:30px 10px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap:20px;
+}
+
+.btn-group{
+    margin-top: 7px;
+}

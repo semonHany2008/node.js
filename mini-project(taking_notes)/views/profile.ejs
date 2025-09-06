@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/profile.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/generalStyles.css">
+
+  </head>
+  <body>
+    <%-include('./partials/header.ejs')%>
+    <div class="container">
+      <h2><%=profile.username%></h2>
+      <div class="password">
+        <strong>Password: </strong>
+        <h4 id="password"><%=profile.password%></h4>
+        <button onclick="revealChangePassModal()">change</button>
+      </div>
+      <div class="email">
+        <strong>Email: </strong>
+        <p><%=profile.email%></p>
+      </div>
+      <div class="name">
+        <span
+          ><strong>first_name: </strong>
+          <h3 id="firstName"><%=profile.firstName%></h3></span
+        >
+        <span
+          ><strong>last_name: </strong>
+          <h3 id="lastName"><%=profile.lastName%></h3></span
+        >
+        <button onclick="revealChangeNameModal()">change</button>
+      </div>
+      <div class="contact-info">
+        <span
+          ><strong>address: </strong>
+          <h5><%=profile.address%></h5></span
+        >
+        <span
+          ><strong>phone_number: </strong>
+          <h5><%=profile.phoneNumber%></h5></span
+        >
+      </div>
+      <select name="enable_otp" onchange="enable_otp()">
+        <option selected disabled>enable OTP</option>
+        <option value="true">enable</option>
+        <option value="false">disable</option>
+      </select>
+      <p id="alertMessage"></p>
+    </div>
+
+    <div id="changePassModal" class="modal-container" style="display:none">
+      <div class="modal">
+        <div class="heading"><h3>change password</h3> <div class="close" onclick="hideChangePassModal()">&times;</div></div>
+      <form>
+            <div class="form-group">
+                <label for="oldPassword">old password:</label>
+                <input id="oldPassword" type="password">
+            </div>
+
+            <div class="form-group">
+                <label for="newPassword">new password:</label>
+                <input id="newPassword" type="password">
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">confirm password:</label>
+                <input id="confirmPassword" type="password">
+            </div>
+            <button type="button" onclick="changePassword()">send</button>
+        </form>
+        </div>
+    </div>
+
+    <div id="changeNameModal" class="modal-container" style="display:none">
+        <div class="modal">
+        <div class="heading"><h3>change name</h3> <div class="close" onclick="hideChangeNameModal()">&times;</div></div>
+      <form>
+            <div class="form-group">
+                <label for="firstName">firstName:</label>
+                <input id="firstNameInput" type="text">
+            </div>
+
+            <div class="form-group">
+                <label for="lastName">lastName:</label>
+                <input id="lastNameInput" type="text">
+            </div>
+            <button type="button" onclick="changeName()">send</button>
+        </form>
+        </div>
+    </div>
+    <script src="/js/profile.js"></script>
+  </body>
+</html>

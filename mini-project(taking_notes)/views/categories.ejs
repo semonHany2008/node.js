@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Categories</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/generalStyles.css" />
+    <link rel="stylesheet" href="/css/categories.css" />
+
+  </head>
+  <body>
+    <%-include('./partials/header.ejs')%>
+    <div class="container">
+      <div class="categories-container">
+        <% for( let category of categories ) { %>
+        <div class="category-card" id="<%=category._id%>">
+          <h2><%=category.name%></h2>
+          <button onclick="deleteCategory('<%=category._id%>')">Delete</button>
+        </div>
+        <% } %>
+      </div>
+      <button onclick="revealCreationInput()">createCategory</button>
+      <p id="alertMessage"></p>
+    </div>
+    <div id="creation_group" style="display: none" class="modal-container">
+        <div class="modal">
+          <div class="heading"><h3>category creation</h3> <div class="close" onclick="hideCreationInput()">&times;</div></div>
+          <form-group>
+            <label for="name">Category Name:</label>
+            <input id="name" type="text" />
+          </form-group>
+          <button onclick="createCategory()">send</button>
+        </div>
+    </div>
+    <script src="/js/categories.js"></script>
+  </body>
+</html>

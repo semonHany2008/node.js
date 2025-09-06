@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>notes</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/notes.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/generalStyles.css">
+
+</head>
+<body>
+    <%-include('./partials/header.ejs')%>
+    <div class="container">
+        <div class="notes-container">
+            <% for( let note of notes ) { %>
+                <div class="note-card" id=<%=note._id%>>
+                    <h2><%=note.title%></h2>
+                    <p><%=note.content%></p>
+                    <h3><%=note.categoryName%></h3>
+                    <div class="btn-group">
+                        <button onclick="deleteNote('<%=note._id%>')">Delete</button>
+                        <button onclick="revealUpdateChoices('<%=note._id%>')">update</button>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+        <button onclick="revealCreationInputs()">create note</button>
+        <p id="alertMessage"></p>
+    </div>
+     <div id="creation_update_inputs" style="display: none;" class="modal-container">
+        <div class="modal">
+        <div class="heading"><h3>note creation || update</h3> <div class="close" onclick="hideCreateUpdateInputs()">&times;</div></div>
+        <form>
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input id="title" type="text">
+            </div>
+
+            <div class="form-group">
+                <label for="content">Content:</label>
+                <input id="content" type="text">
+            </div>
+
+            <div class="form-group">
+                <label for="category_name">category name:</label>
+                <input id="category_name" type="text">
+            </div>
+            <button type="button" id="creation_update_btn">send</button>
+        </form>
+        </div>
+    </div>
+    <div id="update_choices" style="display: none;" class="modal-container">
+        <div id="choices" class="modal">
+        <div class="heading"><h3>update choices</h3> <div class="close" onclick="hideUpdateChoices()">&times;</div></div>
+            <button id="update_partially">partially</button>
+            <button id="update_totally">totally</button>
+        </div>
+    </div>
+    <script src="/js/notes.js"></script>
+</body>
+</html>

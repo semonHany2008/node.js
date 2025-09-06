@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homepage</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/generalStyles.css">
+    <link rel="stylesheet" href="/css/homepage.css" />
+
+  </head>
+  <body>
+    <%-include('./partials/header.ejs')%>
+    <div class="container">
+      <h1>welcome to Homepage</h1>
+      <h2 id="name_role"><span><%=currentUser.username%></span><span><%=currentUser.role%></span></h2>
+      <div class="categories-container">
+        <% for( let category of categories ) { %>
+        <div class="category-card">
+          <h2><%=category.name%></h2>
+          <% if (notes.length>0) { %>
+            <div class="card-body" >
+              <% for( let note of notes ) { %> 
+              <% if(note.categoryName==category.name) { %>
+              <div class="note">
+                <h3><%=note.title%></h3>
+                <p><%=note.content%></p>
+              </div>
+              <% } %> 
+              <% } %>
+            </div>
+          <% } %>
+        </div>
+        <% } %>
+      </div>
+    </div>
+  </body>
+</html>

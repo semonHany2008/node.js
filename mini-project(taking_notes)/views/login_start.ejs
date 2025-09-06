@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login_start</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/generalStyles.css">
+  </head>
+  <body>
+    <%-include('./partials/header.ejs')%>
+    <div class="container">
+      <form id="login_start" onsubmit="handleSubmit(event)">
+        <h2>Login_start</h2>
+        <div class="form-group">
+          <label for="username">username:</label>
+          <input id="username" type="text" />
+        </div>
+
+        <div class="form-group">
+          <label for="password">password:</label>
+          <input id="password" type="password" />
+        </div>
+
+        <button type="submit">send</button>
+        <p id="alertMessage"></p>
+      </form>
+      <button id="Login_verify" style="display: none">
+        <a href="/render_login_verify">verify login</a>
+      </button>
+      <p>Don't have account! try <a href="/render_register"><span>register</span></a></p>
+      <p><a href="/render_forgot_password">forgot password</a></p>
+    </div>
+    <script src="/js/login_start.js"></script>
+  </body>
+</html>
