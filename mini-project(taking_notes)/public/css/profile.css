@@ -12,7 +12,7 @@
 }
 
 .container>div{
-    background-color: rgb(236, 234, 115);
+    background-color: rgb(255, 100, 0);
     box-shadow: 2px 3px 5px black;
     padding:10px;
 }
@@ -28,5 +28,8 @@ select{
     margin-top: 30px;
     font-size: large;
     font-weight: bold;
-    background-color: rgb(236, 234, 115);
+    /* background-color: rgb(255, 113, 18); */
+    background-color: black;
+    color:white;
+    padding:5px;
 }

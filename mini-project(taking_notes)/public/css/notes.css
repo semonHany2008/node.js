@@ -2,7 +2,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(236, 234, 115);
+    background-color: rgb(255, 100, 0);
+    color:white;
     border-radius: 5px;
     padding: 10px;
     box-shadow: 3px 2px 5px black;
@@ -11,6 +12,7 @@
 
 .note-card h2,.note-card h3{
     margin:3px;
+    color:black;
 }
 
 .notes-container{

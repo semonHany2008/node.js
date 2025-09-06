@@ -12,8 +12,8 @@
 }
 
 .note{
-    background-color: rgb(236, 234, 115);
-    color: black;
+  background-color:rgb(255, 100, 0);
+    color: white;
     padding:7px;
     display: flex;
     flex-direction: column;
@@ -26,7 +26,8 @@
 }
 
 .note p{
-    margin:5px
+    margin:5px;
+    color:black;
 }
 
 .category-card{

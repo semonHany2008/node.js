@@ -10,7 +10,7 @@ body{
     display:flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(236, 234, 115,0.6);
+    background-color: rgba(255, 100, 0,0.6);
     position:fixed;
     top:0px;
     left:0px;
@@ -34,7 +34,7 @@ input{
     padding:7px;
     font-size: 17px;
     font-weight: 150px;
-    box-shadow: 2px 2px 3px rgb(199, 197, 58) inset;
+    box-shadow: 2px 2px 3px rgb(255, 100, 0) inset;
 }
 label{
     font-size: larger;
@@ -54,7 +54,7 @@ label{
 }
 
 .heading>h3{
-    color:rgb(236, 234, 115);
+    color:rgb(255, 100, 0);
     font-size: x-large;
 }
 .close{
@@ -103,7 +103,7 @@ button a{
     color:white;
 }
 form{
-    background-color: rgb(236, 234, 115);
+    background-color: rgb(255, 100, 0);
     border-radius: 10px;
     padding:15px;
     box-shadow: 3px 2px 5px black;
