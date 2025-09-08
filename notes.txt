@@ -58,10 +58,12 @@
 - we use the promise to make the code asyncronous according to the general logic async-await, which enable using .then((res)=>{}).catch((err)=>{})
 
                           client req
-- header: contains sensitive data like: authorization:'Bearer 3887', Content-Type:'application/json', accept:'application/json', accept-language:'ar-EG, en-US'.
+- headers: contains sensitive data like: authorization:'Bearer 3887', Content-Type:'application/json', accept:'application/json', accept-language:'ar-EG, en-US'.
 - body: contains the data sent with post, put or patch requests.
 - query: a string after ? contains the query parameters.
 - params: Found after a ? in the URL. Usually written as key-value pairs separated by &.
+- session: {}
+- cookies:{}
 
                            express
 - 'npm i nodemon express' this command install both nodemon and express libraries.
@@ -103,3 +105,14 @@
 - cluster0_password: wOzNSmnblDAUcr5K
 - username: semonhany848_db_user
 - connection String: mongodb+srv://semonhany848_db_user:wOzNSmnblDAUcr5K@cluster0.tftiqfj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+
+                                advanced
+- we install 'express-session' library to store the token inside the server session.
+- we must save the jwt_secret_key and session_secret (string of chars, symbols and nums) in .env file for more security.
+- we set this middleware to use for each endpoint: app.use(session({secret:process.env.session_secret, resave:false (prevent resave when no editing), saveUninitialized:flase (prevent save the guest users who don't signedin), cookie:{maxAge:1000*60*60, httpOnly:true (prevent sending requests with javascript scripts, but only using http), secure:false (in development mode to enable using http not strict with https)}})).
+- the cookie in the browser is the same as the session of the server.
+- res.cookie('token', token, {maxAge:1000*60, httpOnly:true, sameSite:'strict', secure:false}) after we install and require the library 'cookies-parser'.
+- app.use(cors()) used to enable each server_ip to send request to the server.
+- app.use(cors({origin:(origin, callback)=>{if(!origin || allowedOrigins.includes(origin)) callback("done", true); else: callback("this origin not allowed by cors!")}, credentials:true}));
+- firefox browser and postman used the same ip of the localhost (127.0.0.1) then when they used for sending requests to localhost the origin ip will be undefined, so we handled it in the callback condition using(!origin).
+- we can use live server for running from another ip server(front-end) as it run on a differet port than the local express server.
