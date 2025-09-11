@@ -142,6 +142,9 @@ const send_otp = async (req, res) => {
         .json({ message: "new and confirm password must be the same!" });
     }
     foundUser.password = bcrypt.hashSync(newPassword, 10);
+    foundUser.otp=null;
+    foundUser.otpExpiry=null;
+
     await foundUser.save();
     res.json({ message: "password updated successfully!" });
   } catch (err) {

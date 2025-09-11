@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 require("dotenv").config({ path: path.join(__dirname, "../.env") });
 
-const getusers = async (req, res) => {
+const getUsers = async (req, res) => {
   try {
     let token = req.session.token;
     if (!token) {
@@ -29,7 +29,7 @@ const getusers = async (req, res) => {
   }
 };
 
-const getuserByID = async (req, res) => {
+const getUserByID = async (req, res) => {
   try {
     let token = req.session.token;
     if (!token) {
@@ -253,9 +253,9 @@ const edit_user = async (req, res) => {
 };
 
 module.exports = {
-  getusers,
+  getUsers,
   delete_user,
-  getuserByID,
+  getUserByID,
   add_user,
   edit_user,
 };

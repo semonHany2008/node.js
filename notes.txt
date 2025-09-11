@@ -85,6 +85,7 @@
 - we access the folders inside public folder using / at the start of the path, in addition to using app.use(express.static(publicFolder_path)).
 - when we write the path to a file or folder in the current folder we user ./ at the start of the path.
 - .gitignore file used to ignore senesetive or large storage cost folders, write the file name directly '.env' and the folder with / at the front '/node_modules'.
+- fetch method return a whole response from the server (containing server request statuses) so we wait to get the json object from (the response send by the endpoint) (data=await res.json()).
 
                             database
 - my cluster0 password in Node.JS project on mongodb atlas: 7EbDNXJzwj53enKD   ***************
@@ -111,8 +112,25 @@
 - we must save the jwt_secret_key and session_secret (string of chars, symbols and nums) in .env file for more security.
 - we set this middleware to use for each endpoint: app.use(session({secret:process.env.session_secret, resave:false (prevent resave when no editing), saveUninitialized:flase (prevent save the guest users who don't signedin), cookie:{maxAge:1000*60*60, httpOnly:true (prevent sending requests with javascript scripts, but only using http), secure:false (in development mode to enable using http not strict with https)}})).
 - the cookie in the browser is the same as the session of the server.
-- res.cookie('token', token, {maxAge:1000*60, httpOnly:true, sameSite:'strict', secure:false}) after we install and require the library 'cookies-parser'.
+- res.cookie('token', token, {maxAge:1000*60, httpOnly:true, sameSite:'strict', secure:false}) after we install, require the library 'cookie-parser' and use it as middleware:app.use(cookieParser()), then we use req.cookies.{cookiename}to access it in protected endPoint.
 - app.use(cors()) used to enable each server_ip to send request to the server.
-- app.use(cors({origin:(origin, callback)=>{if(!origin || allowedOrigins.includes(origin)) callback("done", true); else: callback("this origin not allowed by cors!")}, credentials:true}));
+- app.use(cors({origin:(origin, callback)=>{if(!origin || allowedOrigins.includes(origin)) callback(null, true); else: callback("this origin not allowed by cors!")}, credentials:true}));
 - firefox browser and postman used the same ip of the localhost (127.0.0.1) then when they used for sending requests to localhost the origin ip will be undefined, so we handled it in the callback condition using(!origin).
+- cors() parameters are: (error, allow) in order.
 - we can use live server for running from another ip server(front-end) as it run on a differet port than the local express server.
+- when we used jwt.verify() there's a probability of an error occured so we use error-parameter_callback-fuction as a last parameter to handle it
+  , but it's used in middlewares where there isn't a code after it require the decoded variable, although we use try-catch logic to handle this case.
+- we install the library (nodemailer) for sending messages to an email.
+- create the transporter function into file inside utils folder :const transporter=nodemailer.createTransport({service:'gmail', auth:{user:(email), pass:(app_password on google)}});
+- const sendmail=(to, subject, text)=>{const mailOptions={from:process.env.EMAIL, to:to, subject:subject, text:text}; transporter.sendMail(mailOptions,(error, info)=>{if(error)=>{console.log(error);} else{console.log("email sent successfully", info.response);}})}
+- user:'semonhany848@gmail.com'
+- pass:'hztr hxye tpto fovh' (E-commerce).
+- microservice notation is to divide the main routers into separate micro-servers with different ports
+  ,create gateway server that receive all requests then route each to its own main router server
+  , this reduce the load on one server in big projects
+  , we handle the accessability to these servers using cors() and manual-handled middlewares.
+- in E-comm project we create verified-account endpoint to make sure that the email sent while registeration is already exist(valid) by sending otp_num to this email (send-otp endpoint) then the user resend it with his email in the body of verified-account endpoint.
+
+                            general
+- we use 'nodemon file_name' after we install nodemon library, but if not we use 'npx nodemon file_name'.
+- when we change in .env file we must restart the server manual as the server can't see this secret file.
