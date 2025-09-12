@@ -15,7 +15,8 @@ const fetchServer = async (url, method, body) => {
     body:JSON.stringify(body),
   });
 
-  return await response.json();
+  let data= await response.json();
+  return data
 };
 
-module.exports = fetchServer;
+module.exports = {fetchServer};

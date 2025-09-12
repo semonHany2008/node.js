@@ -1,4 +1,4 @@
-const { fetchPOSTREQUEST } = require('../../utils/fetchServer');
+const { fetchServer } = require('../../utils/fetch_server');
 
 
 const sendOtp = async (req, res) => {
@@ -6,7 +6,7 @@ const sendOtp = async (req, res) => {
     if (!email) {
         return res.status(400).json({ message: "Email is required" });
     }
-    const data = await fetchPOSTREQUEST('http://127.0.0.1:3000/auth/send-otp', { email });
+    const data = await fetchServer('http://127.0.0.1:3000/auth/send-otp',"POST", { email });
     return res.json({ message: data });
 }
 

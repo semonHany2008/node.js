@@ -1,4 +1,4 @@
-const { fetchPOSTREQUEST } = require('../../utils/fetchServer');
+const { fetchPOSTREQUEST } = require('../../utils/fetch_server');
 
 
 
@@ -7,7 +7,7 @@ const verifiedAccount = async (req, res) => {
     if (!email || !otp) {
         return res.status(400).json({ message: "All inputs are required" });
     }
-    const data = await fetchPOSTREQUEST('http://127.0.0.1:3000/auth/verified-account', { email, otp });
+    const data = await fetchPOSTREQUEST('http://127.0.0.1:3000/auth/verified-account',"POST", { email, otp });
     req.session.token = data.token
     return res.json({ message: data });
 }

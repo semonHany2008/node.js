@@ -1,4 +1,4 @@
-const {usersData}=require("../../models/users");
+const {usersData}=require("../models/users");
 
 const getUsers=async(req, res)=>{
     if(req.user.role=="user"){
