@@ -13,7 +13,7 @@ router.post('/register', register)
 router.post('/verified-account', verifiedAccount)
 router.post('/send-otp',sendOtp)
 router.post('/new-password',newPassword)
-router.get('/logout', logout)
+router.delete('/logout', logout)
 
 
 

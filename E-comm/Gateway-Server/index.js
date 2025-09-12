@@ -4,7 +4,8 @@ require('dotenv').config()
 const cors = require('cors');
 const authRouter = require('./router/authRouter');
 const usersRouter = require('./router/usersRouter');
-
+const path = require("path");
+require("dotenv").config({path:path.join(__dirname, "./.env")});
 
 
 const app = express();
@@ -14,10 +15,10 @@ app.use(cors());
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: {
         secure: false,
-        maxAge: 1000 * 60,
+        maxAge: 1000 * 60*60*24,
         httpOnly: true
     }
 }))

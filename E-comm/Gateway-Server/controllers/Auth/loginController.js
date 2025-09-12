@@ -1,4 +1,4 @@
-const { fetchServer } = require("../../utils/fetch_server");
+const { fetchPostRequest } = require("../../utils/fetch_server");
 
 const login = async (req, res) => {
   try {
@@ -6,13 +6,13 @@ const login = async (req, res) => {
     if (!usernameOrEmail || !password) {
       return res.status(400).json({ message: "All inputs are required" });
     }
-    const data = await fetchServer("http://127.0.0.1:3000/auth/login", "POST", {
+    const data = await fetchPostRequest("http://127.0.0.1:8080/auth/login", {
       usernameOrEmail,
       password,
     });
     if(data.token){
         req.session.token = data.token;
-        res.json({ message: data });
+        return res.json({ message: data.message });
     }
     res.status(401).json({ message: data });
   } catch (err) {

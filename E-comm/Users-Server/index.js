@@ -6,7 +6,7 @@ const { connectDB } = require("./config/connDB");
 const usersRouter = require("./router/usersRouter");
 const check_req = require("./middleware/check_req");
 const path = require("path");
-require("dotenv").config(path.join(__dirname, "./.env"));
+require("dotenv").config({path:path.join(__dirname, "./.env")});
 
 const app = express();
 app.use(express.json());
@@ -28,7 +28,7 @@ app.use("/users", usersRouter);
 mongoose.connection.once("connected", () => {
   console.log("Connected to MongoDB");
   app.listen(process.env.PORT, () => {
-    console.log("Server started on port 3000");
+    console.log("Server started on port "+ process.env.PORT);
   });
 });
 
