@@ -14,7 +14,7 @@ const login = async (req, res) => {
       return res.status(400).json({ message: "wrong password!" });
     }
     let token = jwt.sign(
-      { id:foundUser._id ,username, role:foundUser.role, firstName:foundUser.firstName, lastName:foundUser.lastName },
+      { id:foundUser._id ,username: foundUser.username, role:foundUser.role, firstName:foundUser.firstName, lastName:foundUser.lastName },
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );

@@ -11,9 +11,11 @@ const reelsRouter=require('./router/reelsRouter');
 
 //create express server
 const express = require("express");
+const checkAuth = require('./middleware/checkAuth');
 const app = express();
 
 app.use(express.json());
+app.use(checkAuth)
 
 //cors setting
 let allowedURLs = [

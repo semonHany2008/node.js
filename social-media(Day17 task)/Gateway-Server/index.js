@@ -1,15 +1,15 @@
 //config .env file
-require('dotenv').config();
+require("dotenv").config();
 
-//require libraries
-const cors=require('cors');
+//require libraries and connectdb function
+const cors = require("cors");
 const session = require("express-session");
 
 //require routers
-const authRouter=require('./router/authRouter');
-const postsRouter=require('./router/postsRouter');
-const reelsRouter=require('./router/reelsRouter');
-const groupsRouter=require('./router/groupsRouter');
+const authRouter = require("./router/authRouter");
+const postsRouter = require("./router/postsRouter");
+const reelsRouter = require("./router/reelsRouter");
+const groupsRouter = require("./router/groupsRouter");
 
 //create express server
 const express = require("express");
@@ -22,7 +22,7 @@ let allowedURLs = [
   "http://127.0.0.1:3000",
   "http://127.0.0.1:4000",
   "http://127.0.0.1:8080",
-  "http://127.0.0.1:6000",
+  "http://127.0.0.1:3001",
 ];
 app.use(
   cors({
@@ -50,3 +50,8 @@ app.use("/auth", authRouter);
 app.use("/posts", postsRouter);
 app.use("/reels", reelsRouter);
 app.use("/groups", groupsRouter);
+
+//run the server
+app.listen(process.env.PORT, () => {
+  console.log("Gateway server running on port " + process.env.PORT);
+});

@@ -1,3 +1,5 @@
+const fetchPostUpdate = require("../../utils/fetch_post_update");
+
 const reset_password = async (req, res) => {
   try {
     let { otp, newPassword, confirmPassword } = req.body;

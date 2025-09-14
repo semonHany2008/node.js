@@ -5,8 +5,8 @@ const add_reel=async(req, res)=>{
     let {videoUrl, description}=req.body;
     if(!videoUrl || !description)
         return res.status(400).json({message:"videoUrl and description are required"});
-    
-    let data=fetch_post_update("http://localhost:6000/reels/add-reel","POST", req.session.token,  {videoUrl, description});
+
+    let data=await fetch_post_update("http://localhost:3001/reels/add-reel","POST", req.session.token,  {videoUrl, description});
     res.json(data);
   } catch (error) {
     res

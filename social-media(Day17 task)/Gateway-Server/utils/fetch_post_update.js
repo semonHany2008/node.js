@@ -13,6 +13,6 @@ const fetchPostUpdate = async (url, method, token, body) => {
 
   let data=await response.json();
   return data;
-};//with token
+};
 
 module.exports = fetchPostUpdate;

@@ -1,6 +1,8 @@
+const fetchGetDelete=require("../../utils/fetch_get_delete");
+
 const getById=async(req, res)=>{
     try {
-    let data=fetchGetDelete("http://localhost:6000/reels/:id", "GET", req.session.token);
+    let data=await fetchGetDelete(`http://localhost:3001/reels/${req.params.id}`, "GET", req.session.token);
     res.json(data);
   } catch (error) {
     res

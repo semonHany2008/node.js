@@ -8,6 +8,10 @@ const reset_password = async (req, res) => {
     if (!foundOtp) {
       return res.json({ message: "invalid otp or expired!" });
     }
+    let foundUser = await usersModel.findOne({ email: foundOtp.email });
+    if (!foundUser) {
+      return res.json({ message: "user not found!" });
+    }
     if (foundUser.password === newPassword) {
       return res.json({
         message: "new password must be different from old password!",

@@ -2,7 +2,7 @@ const fetchGetDelete=require("../../utils/fetch_get_delete");
 
 const delete_post=async(req, res)=>{
     try {
-    let data=fetchGetDelete("http://127.0.0.1:8080/posts/:id", "DELETE", req.session.token);
+    let data=await fetchGetDelete(`http://127.0.0.1:8080/posts/${req.params.id}`, "DELETE", req.session.token);
     res.json(data);
   } catch (error) {
     res

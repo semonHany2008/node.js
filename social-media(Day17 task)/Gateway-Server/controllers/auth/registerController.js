@@ -1,3 +1,5 @@
+const fetchPostUpdate = require("../../utils/fetch_post_update");
+
 const register = async (req, res) => {
   try {
     let { firstName, lastName, username, password, email, phone, role } = req.body;

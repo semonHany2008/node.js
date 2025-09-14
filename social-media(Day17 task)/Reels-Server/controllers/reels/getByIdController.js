@@ -1,3 +1,5 @@
+const reelsModel = require("../../models/reels");
+
 const getById=async(req, res)=>{
     try {
     let {id}=req.params;

@@ -1,3 +1,5 @@
+const fetchPostUpdate = require("../../utils/fetch_post_update");
+
 const send_otp=async(req, res)=>{
     try {
     let email = req.body.email;

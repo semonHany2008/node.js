@@ -2,8 +2,9 @@ const groupsModel = require("../../models/groups");
 
 const get_group=async(req, res)=>{
     try {
-    let { groupId } = req.params;
-    let foundGroup = await groupsModel.findOne({ _id: groupId }).populate("posts").populate('reels');
+    let  groupId  = req.params.id;
+    console.log("group id: ", groupId);
+    let foundGroup = await groupsModel.findById(groupId ).populate("posts").populate('reels');
     if (!foundGroup) {
       return res.status(400).json({ message: "group not found!" });
     }
