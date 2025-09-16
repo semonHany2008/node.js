@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const session = require("express-session");
+// const session = require("express-session");
 const { connectDB } = require("./config/connDB");
 const usersRouter = require("./router/usersRouter");
 const check_req = require("./middleware/check_req");
@@ -10,15 +10,29 @@ require("dotenv").config({path:path.join(__dirname, "./.env")});
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+
+let allowedURLs = ["http://127.0.0.1:5000", "http://127.0.0.1:8080"];
 app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
-    cookie: { maxAge: 1000 * 60 * 60 * 24, htppOnly: true, secure: false },
+  cors({
+    origin: (origin, callback) => {
+      if (!origin || allowedURLs.includes(origin)) {
+        callback(null, origin);
+      } else {
+        callback("not allowed by cors");
+      }
+    },
+    credentials: true,
   })
 );
+
+// app.use(
+//   session({
+//     secret: process.env.SESSION_SECRET,
+//     resave: false,
+//     saveUninitialized: false,
+//     cookie: { maxAge: 1000 * 60 * 60 * 24, htppOnly: true, secure: false },
+//   })
+// );
 app.use(check_req);
 
 connectDB();

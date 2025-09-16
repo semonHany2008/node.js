@@ -14,13 +14,14 @@ const fetchPostRequest = async (url, body) => {
   return data
 };
 
-const fetchGetRequest = async (url) => {
+const fetchGetRequest = async (url, token) => {
   let response = await fetch(url, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
       username: process.env.USERNAME_SERVER,
       password: process.env.PASSWORD_SERVER,
+      token
     },
     credentials:"include"
   });

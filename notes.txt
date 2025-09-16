@@ -44,6 +44,7 @@
                               npm
 - 'npm update' or 'npm upgrade' used to update installed libraries
 - 'npm uninstall' delete installed library
+- when we run the command 'npm i' without 'npm init' at first, it will initialize the project and create package.json, package-lock.json automatically.
 
                             node.js
 - for exporting, importing from modules we use 'module.exports=property or method to be shared' in the source,
@@ -63,11 +64,11 @@
 - query: a string after ? contains the query parameters.
 - params: Found after a ? in the URL. Usually written as key-value pairs separated by &.
 - session: {}
-- cookies:{}
+- cookies: {}
 
                            express
-- 'npm i nodemon express' this command install both nodemon and express libraries.
-- when we run express server we must use nodemon not the normal node keyword.
+- 'npm i nodemon express' this command install both nodemon and express libraries as a parameters (separated by space) to the function 'npm i'.
+- when we run express server file we must use nodemon not the normal node keyword.
 - when we send body to API request, we send it in the form of stringified json.
 - using fs(file system) built-in module to readFileSync() or writeFileSync() to read and write data stored into an external json file, we must use JSON.parse() and JSON.stringify().
 - we can't use err-parameter call-back function with fs.readFileSync(), it's used with fs.readFile() itself.
@@ -87,9 +88,7 @@
 - .gitignore file used to ignore senesetive or large storage cost folders, write the file name directly '.env' and the folder with / at the front '/node_modules'.
 - fetch method return a whole response from the server (containing server request statuses) so we wait to get the json object from (the response send by the endpoint) (data=await res.json()).
 
-                            database
-- my cluster0 password in Node.JS project on mongodb atlas: 7EbDNXJzwj53enKD   ***************
-- connection string: mongodb+srv://semonhany848:7EbDNXJzwj53enKD@cluster0.etfcmqu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+                            database                     
 - username and email must be unique, in general.
 - when creating new row in the mongo model we use 'new modelName({})' then 'addedRow_name.save()' or 'modelName.create({})'
 - OTP (one-time password) is used for authentication in cases like forget_password its schema contains email and the generated otp_number.
@@ -102,11 +101,6 @@
 - the method model_name.find().skip(number of objects to skip).
 - the method model_name.find().sort({property:1 or -1})used to sort the returned objects based on a specific property either descending(-1) or ascending(1).
 
-                          mini-project (taking-notes)
-- cluster0_password: wOzNSmnblDAUcr5K
-- username: semonhany848_db_user
-- connection String: mongodb+srv://semonhany848_db_user:wOzNSmnblDAUcr5K@cluster0.tftiqfj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
-
                                 advanced
 - we install 'express-session' library to store the token inside the server session.
 - we must save the jwt_secret_key and session_secret (string of chars, symbols and nums) in .env file for more security.
@@ -116,21 +110,39 @@
 - app.use(cors()) used to enable each server_ip to send request to the server.
 - app.use(cors({origin:(origin, callback)=>{if(!origin || allowedOrigins.includes(origin)) callback(null, true); else: callback("this origin not allowed by cors!")}, credentials:true}));
 - firefox browser and postman used the same ip of the localhost (127.0.0.1) then when they used for sending requests to localhost the origin ip will be undefined, so we handled it in the callback condition using(!origin).
-- cors() parameters are: (error, allow) in order.
-- we can use live server for running from another ip server(front-end) as it run on a differet port than the local express server.
+- the callback function of the origin arrow function of the cors() middleware parameters are: (error, origin) in order.
+- we can use live server for running from another ip server(front-end) as it run on a differet port (5500) than the local express server.
 - when we used jwt.verify() there's a probability of an error occured so we use error-parameter_callback-fuction as a last parameter to handle it
   , but it's used in middlewares where there isn't a code after it require the decoded variable, although we use try-catch logic to handle this case.
 - we install the library (nodemailer) for sending messages to an email.
 - create the transporter function into file inside utils folder :const transporter=nodemailer.createTransport({service:'gmail', auth:{user:(email), pass:(app_password on google)}});
 - const sendmail=(to, subject, text)=>{const mailOptions={from:process.env.EMAIL, to:to, subject:subject, text:text}; transporter.sendMail(mailOptions,(error, info)=>{if(error)=>{console.log(error);} else{console.log("email sent successfully", info.response);}})}
-- user:'semonhany848@gmail.com'
-- pass:'hztr hxye tpto fovh' (E-commerce).
+- in E-comm project we create verified-account endpoint to make sure that the email sent while registeration is already exist(valid) by sending otp_num to this email (send-otp endpoint) then the user resend it with his email in the body of verified-account endpoint.
+- When we sign a token with process.env.JWT_SECRET, we must verify with the exact same string.
+
+                              microservice
 - microservice notation is to divide the main routers into separate micro-servers with different ports
   ,create gateway server that receive all requests then route each to its own main router server
   , this reduce the load on one server in big projects
-  , we handle the accessability to these servers using cors() and manual-handled middlewares.
-- in E-comm project we create verified-account endpoint to make sure that the email sent while registeration is already exist(valid) by sending otp_num to this email (send-otp endpoint) then the user resend it with his email in the body of verified-account endpoint.
+  , we handle the accessability to these servers using cors() and manual-handled middlewares
+  , so all requests are sent to the gatewayServer which in turn request for theses pathes in its corresponding microServer. 
+- when me store variable in the session of one microServer(gateway) we must handle the setting of cors and fetch requests to use credentials (credentials:true in cors, credentials:"include" in fetch) 
+  to keep it in cookie while the request is on the client, then use the same session for all requests come and go from this microServer
+  .In addition, Using localhost vs 127.0.0.1 mismatch (cookie is domain-specific).
 
-                            general
-- we use 'nodemon file_name' after we install nodemon library, but if not we use 'npx nodemon file_name'.
+                              socket.io
+- It's a tube connects different channels (frontend, backend).
+- socket.io server deals with httpServer not with express, but at the same time express server more flexible for handling endpoints
+  ,so we create an httpServer from express server at first (http.createServer(app)), then socket.io server from httpServer(new socketIo.Server(httpServer)).
+- socket server cann't receive requests so it doesn't listen on any port, then the httpServer (which contain express server properties too) listen on port.
+- to make io server run(emit io server), in html file we add :<script src="/socket.io/socket.io.js"></script> <script>const socket=io()</script>
+  ,and in index.js file we declare the event: io.on("connection",(socket)=>{console.log("io server connected!); socket.on("disconnect",()=>{console.log("io server disconnected!);})}).
+- when we want to render html file in the server we use(res.sendFile(html_file path)) as it isn't ejs file to render by (res.render(file-path))
+- we refer to the socket.io server in client-side with socket, while in server-side with io.
+
+                               general
+- we use 'nodemon file_name' after we install nodemon library and create a script "dev" then run 'npm run dev', but if not we use 'npx nodemon file_name'.
 - when we change in .env file we must restart the server manual as the server can't see this secret file.
+- we put the command: require('dotenv').config({path:path.join(__dirname,'.env_file path')}) after requiring the dotenv and path library at the top of the entry file(index.js or server.js)
+  ,but if the the .env file is in the same parent folder of the entry file(index) we use: {require('dotenv').config()} directly.
+  ,and that's enough to use (process.env.{environment_variable}) in other files without the need to configure again.

@@ -4,12 +4,11 @@ const jwt = require('jsonwebtoken');
 
 const login = async (req, res) => {
     try {
-        console.log('Login Endpoint')
         const { usernameOrEmail, password } = req.body;
         if (!usernameOrEmail || !password) {
             return res.status(400).json({ message: "All inputs are required" })
         }
-        const getUser = await usersData.findOne({ $or: [{ email: usernameOrEmail.toLowerCase() }, { username: usernameOrEmail.toLowerCase() }] }) // {}
+        const getUser = await usersData.findOne({ $or: [{ email: usernameOrEmail }, { username: usernameOrEmail }] }) // {}
         if (!getUser) {
             return res.status(400).json({ message: "Invalid username or email" })
         }
@@ -17,19 +16,21 @@ const login = async (req, res) => {
         if (!comparePassword) {
             return res.status(400).json({ message: "Invalid password" })
         }
+        const token = jwt.sign({ firstName: getUser.firstName, lastName: getUser.lastName, email: getUser.email, role: getUser.role }, process.env.JWT_SECRET, { expiresIn: "1m" });
+        req.session.token = token;
 
-        if (getUser.status === false) {
-            return res.status(400).json({ message: "Your account is not verified" })
-        }
-
-        console.log("secret before sign: ",process.env.JWT_SECRET);
-        const token = jwt.sign({ firstName: getUser.firstName, lastName: getUser.lastName, email: getUser.email, role: getUser.role }, process.env.JWT_SECRET, { expiresIn: "5m" });
         
+        // res.cookie("token", token, {
+        //     httpOnly: true,
+        //     secure: false,
+        //     maxAge: 1000 * 60 
+        // });
+        // cookie("key","value", {})
 
-        res.json({ message: 'login done' , token: token})
+        return res.json({ message: 'login done' , token})
     }
     catch (error) {
-        res.status(500).json({ message: 'internal server error' , error: error.message});
+        console.log(error)
     }
 
 }

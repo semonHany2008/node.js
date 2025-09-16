@@ -2,11 +2,11 @@ const jwt = require("jsonwebtoken");
 
 const check_req = async (req, res, next) => {
   try {
-    const { username, password } = req.headers;
+    const { username, password, token } = req.headers;
     if (!username || !password) {
       return res
         .status(401)
-        .json({ message: "unauthorized, missed auth headers properties!" });
+        .json({ message: "unauthorized, missed headers auth properties!" });
     }
     if (
       username !== process.env.USERNAME_SERVER ||
@@ -16,16 +16,17 @@ const check_req = async (req, res, next) => {
         .status(401)
         .json({ message: "unauthorized, invalid auth headers properties!" });
     }
-    if (!req.session.token) {
+    if (!token) {
       return res.status(401).json({ message: "unauthorized, login first!" });
     }
 
+    console.log("secret before verify: ",process.env.JWT_SECRET, "length: ",token?.length );
     await jwt.verify(
-      req.session.token,
+      token,
       process.env.JWT_SECRET,
       (error, decoded) => {
         if (error) {
-          return res.status(401).json({ message: "invalid token!" });
+          return res.status(401).json({ message: error.message });
         }
         req.user = decoded;
         next();

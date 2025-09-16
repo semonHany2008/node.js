@@ -12,9 +12,10 @@ const login = async (req, res) => {
     });
     if(data.token){
         req.session.token = data.token;
+        console.log("Saved session token:", req.session.token);
         return res.json({ message: data.message });
     }
-    res.status(401).json({ message: data });
+    res.json({ message: data });
   } catch (err) {
     res.status(500).json({ message: "internal server error", error: err.message });
   }
