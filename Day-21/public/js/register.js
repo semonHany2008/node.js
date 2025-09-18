@@ -11,7 +11,8 @@
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ firstName, lastName, username, email, password , role : "user" })
+        body: JSON.stringify({ firstName, lastName, username, email, password , role : "user" }),
+        credentials:"include"
     })
     .then(res => res.json())
     .then((data) => {

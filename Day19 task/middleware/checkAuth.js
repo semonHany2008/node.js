@@ -9,8 +9,7 @@ const checkAuth = (req, res, next) => {
       req.user = decoded;
       return next();
     });
-  }
-  res.status(401).json({ message: "you're not authorized!" });
+  } else res.status(401).json({ message: "you're not authorized!" });
 };
 
 module.exports = checkAuth;

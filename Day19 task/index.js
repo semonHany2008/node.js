@@ -15,8 +15,6 @@ const checkAuth = require('./middleware/checkAuth');
 
 
 app.use(express.json());
-app.use(checkAuth);
-
 
 app.use(cors({
     origin:(origin, callback)=>{
@@ -39,6 +37,7 @@ app.use(session({
 }))
 
 app.use("/auth", authRouter);
+app.use(checkAuth);
 app.use("/students", studentsRouter);
 
 connectDB();

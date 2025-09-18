@@ -61,7 +61,7 @@
                           client req
 - headers: contains sensitive data like: authorization:'Bearer 3887', Content-Type:'application/json', accept:'application/json', accept-language:'ar-EG, en-US'.
 - body: contains the data sent with post, put or patch requests.
-- query: a string after ? contains the query parameters.
+- query: a string after ? contains the query parameters separated by &.
 - params: Found after a ? in the URL. Usually written as key-value pairs separated by &.
 - session: {}
 - cookies: {}
@@ -146,3 +146,11 @@
 - we put the command: require('dotenv').config({path:path.join(__dirname,'.env_file path')}) after requiring the dotenv and path library at the top of the entry file(index.js or server.js)
   ,but if the the .env file is in the same parent folder of the entry file(index) we use: {require('dotenv').config()} directly.
   ,and that's enough to use (process.env.{environment_variable}) in other files without the need to configure again.
+
+                          chatting project
+- search field
+- users schema contains array of contacted friends
+
+
+                      coding game
+-use the library rate limit for more security

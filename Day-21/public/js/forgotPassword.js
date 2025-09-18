@@ -7,7 +7,8 @@ document.getElementById("forgotPasswordForm").addEventListener("submit", (e) => 
         headers : {
             'Content-Type' : 'application/json'
         },
-        body : JSON.stringify({ email })
+        body : JSON.stringify({ email }),
+        credentials:"include"
     })
     .then(res => res.json())
     .then((data) => {

@@ -8,7 +8,8 @@ document.getElementById('newPasswordForm').addEventListener('submit', (e) => {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({email : localStorage.getItem('email'), otp, newPassword, confirmPassword })
+        body: JSON.stringify({email : localStorage.getItem('email'), otp, newPassword, confirmPassword }),
+        credentials:"include"
     })
     .then(res => res.json())
     .then((data) => {

@@ -1,4 +1,5 @@
 var searchedFriend;
+var currentFriend;
 
 document.getElementById("search_btn").addEventListener("click", () => {
   searchedFriend = document.getElementById("search_input").value.trim();
@@ -33,6 +34,7 @@ function addFriend(friendName) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ friendName }),
+        credentials:"include"
   })
     .then((res) => res.json())
     .then((data) => {
@@ -48,14 +50,15 @@ function addFriend(friendName) {
 function openChatRoom(friend) {
   document.querySelector(".chat_room").style.display = "block";
   document.querySelector("h2>span#user").textContent = friend;
+  currentFriend = friend;
+}
 
-  document.getElementById("sendBtn").addEventListener("click", () => {
+document.getElementById("sendBtn").addEventListener("click", () => {
     const message = document.getElementById("message").value;
     if (message.trim()) {
-      socket.emit("private-message", { to: friend, message });
+      socket.emit("private-message", { to: currentFriend, message });
 
       addMessage(`You ➡️ ${friend}: ${message}`);
       document.getElementById("message").value = "";
     }
   });
-}
