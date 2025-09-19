@@ -1,0 +1,3 @@
+[submodule "codopia"]
+	path = codopia
+	url = https://github.com/ShadowVoid-King/Codopia.git
