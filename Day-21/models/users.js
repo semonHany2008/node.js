@@ -1,0 +1,35 @@
+const mongoose = require('mongoose');
+
+
+const users = new mongoose.Schema({
+    firstName : {
+        type : String,
+        required : true
+    },
+    lastName : {
+        type : String,
+        required : true
+    },
+    username : {
+        type : String,
+        required : true
+    },
+    email : {
+        type : String,
+        required : true
+    },
+    password : {
+        type : String,
+        required : true
+    },
+    friends:[{id:{type: mongoose.Schema.Types.ObjectId, ref: 'users'}, name: String}],
+    role : {
+        type : String,
+        enum : ['user', 'admin'],
+        default: "user" 
+    }
+})
+
+
+const usersData = mongoose.model('users', users)
+module.exports = {usersData}

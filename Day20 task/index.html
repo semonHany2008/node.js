@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>socket.io</title>
+
+    <style>
+      body {
+        margin: 0;
+        padding-bottom: 3rem;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif;
+      }
+
+      #form {
+        background: rgba(0, 0, 0, 0.15);
+        padding: 0.25rem;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        height: 3rem;
+        box-sizing: border-box;
+        backdrop-filter: blur(10px);
+      }
+
+      #input {
+        border: none;
+        padding: 0 1rem;
+        flex-grow: 1;
+        border-radius: 2rem;
+        margin: 0.25rem;
+      }
+
+      #input:focus {
+        outline: none;
+      }
+
+      #form > button {
+        background: #333;
+        border: none;
+        padding: 0 1rem;
+        margin: 0.25rem;
+        border-radius: 3px;
+        outline: none;
+        color: #fff;
+      }
+
+      #messages {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      #messages > li {
+        padding: 0.5rem 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      #messages > li:nth-child(odd) {
+        background: #efefef;
+      }
+
+     span#from{
+        font-weight: bold;
+        margin-right: 1rem;
+        background-color: #333;
+        color:#fff
+      }
+      span#to{
+        font-weight: bold;
+        margin-right: 1rem;
+        color: #333;
+        background-color:#fff
+      }
+      span{
+        padding: 5px 10px;
+      }
+      select{
+        padding:2px;
+      }
+    </style>
+  </head>
+  <body>
+    <ul id="messages"></ul>
+    <form id="form">
+      <span>from:</span>
+      <select name="from" id="from">
+        <option selected value="semon">semon</option>
+        <option value="aya">aya</option>
+        <option value="abear">abear</option>
+      </select>
+      <input type="text" id="input" autocomplete="off" />
+      <span>to:</span>
+      <select name="to" id="to">
+        <option selected value="semon">semon</option>
+        <option value="aya">aya</option>
+        <option value="abear">abear</option>
+      </select>
+      <button type="send">send</button>
+    </form>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+      socket.emit("join room", "my first room");
+
+      const messages = document.getElementById("messages");
+      const form = document.getElementById("form");
+      const input = document.getElementById("input");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        let from = document.getElementById("from").value;
+        let to = document.getElementById("to").value;
+
+        if (input.value) {
+          socket.emit("private message", {
+            message: input.value,
+            to,
+            from,
+          });
+          input.value = "";
+        }
+      });
+
+      socket.on("private message", ({ message, to, from }) => {
+        const li = document.createElement("li");
+        const span = document.createElement("span");
+        span.textContent = `from ${from}`;
+        span.id="from";
+        li.appendChild(span);
+
+        let msg = document.createElement("p");
+        msg.textContent = message;
+        li.appendChild(msg);
+
+        let span2 = document.createElement("span");
+        span2.textContent = `to ${to}`;
+        span2.id="to";
+        li.appendChild(span2);
+
+        messages.appendChild(li);
+      });
+    </script>
+  </body>
+</html>
