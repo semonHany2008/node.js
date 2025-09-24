@@ -34,7 +34,8 @@
    - 'git commit -am "..."' used to add changes and send a message with it in one command, but the file must be tracked and added already into git.
   - use powershell instead of cmd for more extensions and privileges.
   - 'git remote add origin ${repo path ended with .git}' enable using this github repo for later push.
-  - 'git remote set-url origin ${repo path ended with .git}' to change the connection to another github repo. 
+  - 'git remote set-url origin ${repo path ended with .git}' to change the connection to another github repo.
+  - 'git remote -v' show the current github repo related to the local git repo.
   - 'git branch -M main' used to make master branch(the default of git app) a main branch
   - 'git push -u origin main' used at the first time to push the git folder into github repository and later used to push any new changes.
   - 'git pull origin main --allow-unrelated-histories' used to merge the manual added file to github with ones added be git local repo.
