@@ -42,6 +42,12 @@
   - 'git rm file_name' remove a file from git repo.
   - 'git mv -f file_name target_folder' move a file from the current folder(source) to the target.
     with the flag -f will overwrite the destination file if exist already.
+  - https://download-directory.github.io/ this service enable downloading a specific folder from github repo.
+  - git LFS (standing for large File Storage) used in this project for uploading zip folders or other large folders to github.
+  - 'git lfs install' install git LFS.
+  - 'git lfs track file-name' this command create gitattribute file containing the files git lfs tracks.
+  - 'git checkout branch-name' this command check the status of commits between local and remote branch and warn the incoming changes that will result by the pul request.
+  - 'git push origin semon-hany --force' this command push to the branch named semon-hany and overwrite the existing old branch without causing merge.
 
                               npm
 - 'npm update' or 'npm upgrade' used to update installed libraries
@@ -148,3 +154,7 @@
 - we put the command: require('dotenv').config({path:path.join(__dirname,'.env_file path')}) after requiring the dotenv and path library at the top of the entry file(index.js or server.js)
   ,but if the the .env file is in the same parent folder of the entry file(index) we use: {require('dotenv').config()} directly.
   ,and that's enough to use (process.env.{environment_variable}) in other files without the need to configure again.
+
+                    codopia graduation project
+- in (template-driven forms [formsModule]) we can use the method resetForm() with ngForm, but in reactive Forms we use only reset() with FormGroup 
+  where it will reset to empty fields if no argument passed or to the original values passed to it as argument.
