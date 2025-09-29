@@ -158,3 +158,7 @@
                     codopia graduation project
 - in (template-driven forms [formsModule]) we can use the method resetForm() with ngForm, but in reactive Forms we use only reset() with FormGroup 
   where it will reset to empty fields if no argument passed or to the original values passed to it as argument.
+- zod library used for validation in back-end.
+- jwt automatically adds the propery 'exp' representing the expiryDate of the token in seconds.
+- BehaviorSubject<T>() used to listen any changes occured on the value of a variable, shared asObservable(). and the method .next(value) used to update the of the listened variable.
+- we use discriminators with mongo schema to create different other models from that has common properties but also differ in some others.
