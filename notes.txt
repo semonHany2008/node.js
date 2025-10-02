@@ -162,3 +162,7 @@
 - jwt automatically adds the propery 'exp' representing the expiryDate of the token in seconds.
 - BehaviorSubject<T>() used to listen any changes occured on the value of a variable, shared asObservable(). and the method .next(value) used to update the of the listened variable.
 - we use discriminators with mongo schema to create different other models from that has common properties but also differ in some others.
+- when we use .populate with mongodb model we must require the model refered-to first.
+- we can pass params or query_params while navigating an angular component (router.navigate(['/...', param]) or router.navigate(['/...', {queryParams:{}}]))
+  ,then in this component we access the params using: (route:activatedRoute.snapshot.paramMap.get(''))
+  and the query_params with: (route.queryParams.subscribe(params=>{})).
